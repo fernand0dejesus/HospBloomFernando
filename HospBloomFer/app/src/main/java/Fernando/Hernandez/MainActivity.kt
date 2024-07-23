@@ -8,6 +8,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import Fernando.Hernandez.databinding.ActivityMainBinding
+import android.widget.Button
+import android.widget.EditText
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,5 +33,15 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        //1- Mandar a llamar a todos los elementos de la vista
+        val txtNombre = findViewById<EditText>(R.id.txtNombre)
+        val txtTipoSangre = findViewById<EditText>(R.id.txtTipoSangre)
+        val txtTelefono = findViewById<EditText>(R.id.txtTelefono)
+        val txtEnfermedad = findViewById<EditText>(R.id.txtEnfermedad)
+        val txtFechaNacimiento = findViewById<EditText>(R.id.txtFechaNacimiento)
+        val txtHabitacion = findViewById<EditText>(R.id.txtHabitacion)
+        val btnAgregarPaciente = findViewById<Button>(R.id.btnAgregarPaciente)
+
+
     }
 }

@@ -1,0 +1,27 @@
+  //1- Mandar a llamar a todos los elementos de la vista
+        val txtId = findViewById<EditText>(R.id.txtId)
+        val txtNombre = findViewById<EditText>(R.id.txtNombre)
+        val txtTipoSangre = findViewById<EditText>(R.id.txtTipoSangre)
+        val txtTelefono = findViewById<EditText>(R.id.txtTelefono)
+        val txtEnfermedad = findViewById<EditText>(R.id.txtEnfermedad)
+        val txtFechaNacimiento = findViewById<EditText>(R.id.txtFechaNacimiento)
+        val txtHabitacion = findViewById<EditText>(R.id.txtHabitacion)
+        val btnAgregarPaciente = findViewById<Button>(R.id.btnAgregarPaciente)
+
+
+        //2- Programar el boton agregar paciente
+        btnAgregarPaciente.setOnClickListener{
+            CoroutineScope(Dispatchers.IO).launch {
+                //1-crear un objeto de la clase  conexion
+
+                val objConexion = ClaseConexion().cadenaConexion()
+
+                //2- crear una variable que contenga un prepare statement
+                val addPaciente = objConexion?.prepareStatement("insert into Pacientes (PacienteUUID, Nombre, TipoSangre, Telefono, Enfermedad, FechaNacimiento, HabitacionUUID) values(?,?,?,?,?,?,?)")!!
+                addPaciente.setString(1, UUID.randomUUID().toString())
+                addPaciente.setString(2,txtNombre.text.toString())
+                addPaciente.setString(3, txtTipoSangre.text.toString())
+                addPaciente.setString(4,txtTelefono.text.toString())
+                addPaciente.setString(5, txtEnfermedad.text.toString())
+                addPaciente.setString(6,txtFechaNacimiento.text.toString())
+                addPaciente.setString(7,txt)
