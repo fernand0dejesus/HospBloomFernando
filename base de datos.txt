@@ -1,0 +1,51 @@
+CREATE TABLE Habitaciones (
+   HabitacionUUID VARCHAR2(50) PRIMARY KEY,
+   NumeroHabitacion VARCHAR2(10) UNIQUE NOT NULL,
+   NumeroCama VARCHAR2(10) NOT NULL
+);
+
+CREATE TABLE Pacientes (
+   PacienteUUID VARCHAR2(50) PRIMARY KEY,
+   Nombre VARCHAR2(100) NOT NULL,
+   TipoSangre VARCHAR2(3)NOT NULL,
+   Telefono VARCHAR2(15) UNIQUE,
+   Enfermedad VARCHAR2(100),
+   FechaNacimiento DATE NOT NULL,
+   HabitacionUUID VARCHAR2(50),
+   FOREIGN KEY (HabitacionUUID) REFERENCES Habitaciones(HabitacionUUID)
+);
+
+CREATE TABLE Medicamentos (
+   MedicamentoUUID VARCHAR2(50) PRIMARY KEY,
+   NombreMedicamento VARCHAR2(30) UNIQUE NOT NULL
+);
+
+CREATE TABLE AplicacionMedicamentos (
+   AplicacionUUID VARCHAR2(50) PRIMARY KEY,
+   PacienteUUID VARCHAR2(50),
+   MedicamentoUUID VARCHAR2(50),
+   HoraAplicacion TIMESTAMP NOT NULL,
+   FOREIGN KEY (PacienteUUID) REFERENCES Pacientes(PacienteUUID),
+   FOREIGN KEY (MedicamentoUUID) REFERENCES Medicamentos(MedicamentoUUID)
+);
+-- Eliminar la tabla Habitaciones
+DROP TABLE Habitaciones CASCADE CONSTRAINTS;
+
+-- Eliminar la tabla AplicacionMedicamentos, que tiene claves externas a Pacientes y Medicamentos
+DROP TABLE AplicacionMedicamentos CASCADE CONSTRAINTS;
+
+-- Eliminar la tabla Pacientes, que tiene una clave externa a Habitaciones
+DROP TABLE Pacientes CASCADE CONSTRAINTS;
+
+
+
+-- Eliminar la tabla Medicamentos
+DROP TABLE Medicamentos CASCADE CONSTRAINTS;
+
+--slect medicamentos
+select * from Medicamentos;
+select * from Habitaciones;
+select * from AplicacionMedicamentos ;
+select * from Pacientes;
+
+
